@@ -1,0 +1,60 @@
+{# HTML评测报告模板：Jinja2语法渲染，生成带表格的可视化报告 #}
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <title>LLM 自动化评测报告</title>
+    <style>
+        body { font-family: 微软雅黑, Arial, sans-serif; margin: 20px; }
+        h1 { color: #333; }
+        table { border-collapse: collapse; width: 100%; margin-top: 20px; }
+        th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+        th { background-color: #f5f5f5; font-weight: bold; }
+        .pass { color: green; font-weight: bold; }
+        .fail { color: red; font-weight: bold; }
+        .summary { background: #f0f8ff; padding: 15px; border-radius: 5px; margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+    <h1>LLM 自动化评测报告</h1>
+
+    {# 统计概览区域 #}
+    <div class="summary">
+        <h3>评测概览</h3>
+        <p>总用例数：{{ summary.total }}</p>
+        <p>通过数：{{ summary.pass }}</p>
+        <p>失败数：{{ summary.fail }}</p>
+        <p>通过率：{{ summary.pass_rate }}</p>
+    </div>
+
+    {# 用例明细表格 #}
+    <table>
+        <thead>
+            <tr>
+                <th>运行ID</th>
+                <th>用例ID</th>
+                <th>模型</th>
+                <th>状态</th>
+                <th>精确匹配</th>
+                <th>文本相似度</th>
+                <th>耗时(ms)</th>
+                <th>Token数</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for r in results %}
+            <tr>
+                <td>{{ r.id[:8] }}</td>
+                <td>{{ r.testcase_id }}</td>
+                <td>{{ r.model }}</td>
+                <td class="{{ r.status }}">{{ r.status }}</td>
+                <td>{{ r.metrics.exact_match }}</td>
+                <td>{{ "%.2f"|format(r.metrics.ratio) }}</td>
+                <td>{{ r.latency }}</td>
+                <td>{{ r.tokens if r.tokens else "-" }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

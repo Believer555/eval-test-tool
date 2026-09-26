@@ -1,0 +1,5 @@
+{"id":"tc001","input":"1+1等于几？","reference":"2"}
+{"id":"tc002","input":"HTTP状态码404表示什么含义？","reference":"未找到"}
+{"id":"tc003","input":"软件测试的核心目的是什么？","reference":"发现缺陷"}
+{"id":"tc004","input":"请只输出三个字：你好","reference":"你好"}
+{"id":"tc005","input":"Python是编译型语言还是解释型语言？","reference":"解释型"}

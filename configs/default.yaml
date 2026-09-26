@@ -1,0 +1,30 @@
+# ==================== 模型配置 ====================
+model:
+  provider: openai             # 模型提供方：openai / hf / local
+  name: gpt-3.5-turbo          # 模型名称标识
+  temperature: 0.0             # 采样温度，0=最稳定，评测场景推荐0
+  max_tokens: 512              # 最大生成token数，控制输出长度上限
+
+# ==================== 运行器配置 ====================
+runner:
+  concurrency: 4               # 并发任务数，根据API限流调整
+  rate_limit_qps: 1            # 每秒请求数上限（粗略控制）
+
+# ==================== 评测指标配置 ====================
+metrics:
+  use_embedding: false         # 是否计算语义相似度（关闭可加快速度）
+  embedding_model: all-mpnet-base-v2  # 语义编码模型名称
+
+# ==================== 报告输出配置 ====================
+report:
+  formats: ["csv", "html"]     # 输出报告格式，支持csv/json/html
+
+# ==================== 缺陷自动提单配置 ====================
+bug:
+  auto_open: false             # 是否自动创建GitHub Issue
+  github_repo: "your-org/your-repo"  # 目标仓库地址
+  github_token_env: "GITHUB_TOKEN"   # 读取Token的环境变量名
+
+# ==================== 回归测试配置 ====================
+regression:
+  golden_dir: "data/golden"    # 金标准基线文件存放目录

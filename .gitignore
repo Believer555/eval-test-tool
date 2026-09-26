@@ -216,3 +216,18 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Project: local databases and generated report artifacts
+*.db
+*.sqlite
+*.sqlite3
+results.csv
+results.html
+
+# Editors / IDEs
+.idea/
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db

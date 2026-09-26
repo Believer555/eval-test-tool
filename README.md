@@ -1,2 +1,19 @@
-# eval-test-tool
-Lightweight LLM evaluation + traditional testing tool scaffold (MVP)
+# eval-test-tool 轻量化 LLM 自动化评测工具
+## 项目定位
+一套融合传统软件测试全流程的 LLM 自动化评测系统，覆盖需求管理、用例设计、批量执行、多维度断言、缺陷跟踪、回归验证完整链路，支持多模型适配、多格式报告输出、CI 持续集成。
+
+## 核心特性
+- ✅ 完整测试闭环：需求 → 用例 → 执行 → 缺陷 → 回归
+- ✅ 适配器模式：多模型统一接口，快速切换对比
+- ✅ 多维度评测：精确匹配 / 文本相似度 / 语义相似度三级指标
+- ✅ 数据持久化：SQLite 存储，全链路可追溯、可统计
+- ✅ 配置驱动：YAML 配置 + 环境变量，多环境适配
+- ✅ 并发执行：异步调度 + 信号量限流，符合 API 速率约束
+- ✅ 多格式输出：CSV / JSON / HTML 报告，兼顾机器与人类可读
+
+## 快速开始
+1. 创建并激活虚拟环境
+```bash
+python -m venv .venv
+# Windows: .venv\Scripts\activate
+# Linux/Mac: source .venv/bin/activate
